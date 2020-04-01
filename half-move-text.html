@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>좌우로 움직이는 텍스트 애니메이션</title>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+    <!-- https://www.youtube.com/watch?v=LgiadQQM6mo&t=5s -->
+    <style>
+      * {margin: 0;padding: 0;}
+      body {
+        height: 100vh; 
+        background-color: #f2f2f2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .inner {
+        width: 100vw;
+      }
+      .left, .right {
+        width: 50vw;
+        display: inline-block;
+        overflow: hidden;
+        text-align: center;
+      }
+      .left {
+        transform: skew(0deg, -15deg);
+        color: #3bc9db;
+      }
+      .right {
+        transform: skew(0deg, 15deg);
+        color: #adb5bd;
+      }
+      .content {
+        width: 100vw;
+      }
+      .right .content {
+        transform: translateX(-50vw);
+      }
+      span {
+        display: inline-block;
+        font-family: 'Black Han Sans', sans-serif;
+        font-size: 8vw;
+        letter-spacing: 5px;
+        line-height: 7vw;
+        text-transform: uppercase;
+        transition: ease-out 0.6s;;
+        cursor: default;
+      }
+    </style>
+</head>
+<body>
+<!-- Look at your product from a different angle -->  
+  <div class="wrap">
+    <div class="inner">
+      <div class="left">
+        <div class="content">
+          <span class="slow">look at your</span>
+        </div>
+      </div><div class="right">
+        <div class="content">
+          <span class="slow">look at your</span>
+        </div>
+      </div>
+      <div class="left">
+        <div class="content">
+          <span class="slow">product from</span>
+        </div>
+      </div><div class="right">
+        <div class="content">
+          <span class="slow">product from</span>
+        </div>
+      </div>
+      <div class="left">
+        <div class="content">
+          <span class="slow">a different</span>
+        </div>
+      </div><div class="right">
+        <div class="content">
+          <span class="slow">a different</span>
+        </div>
+      </div>
+      <div class="left">
+        <div class="content">
+          <span class="slow">angle</span>
+        </div>
+      </div><div class="right">
+        <div class="content">
+          <span class="slow">angle</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    let width = window.innerWidth
+    const textSlow = document.querySelectorAll('.slow')
+    
+    const handleMouseMove = ev => {
+      const {pageX} = ev
+      let normalizedPosition = pageX / (width/2) - 1
+      let speedSlow = 100 * normalizedPosition
+      textSlow.forEach(text => text.style.transform = `translate(${speedSlow}px)`)
+    }
+    const handleWindowResize = () => width = window.innerWidth
+
+    document.addEventListener('mousemove', handleMouseMove)
+    document.addEventListener('resize', handleWindowResize)
+  </script>
+</body>
+</html>
