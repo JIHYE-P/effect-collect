@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마우스 방향에 따라 움직이는 텍스트 그림자</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+  <style>
+    * {margin: 0;padding: 0;}
+    html, body {position: relative;width: 100%;height: 100%;}
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #333;
+    }
+    h1 {
+      width: 100%;
+      text-align: center;
+      font-family: 'Bungee', cursive;
+      font-size: 100px;
+      letter-spacing: 5px;
+      cursor: default;
+      color: #f8f8f8;
+      text-shadow: 0px 0px 0px rgba(102, 217, 232, 0.7), 0px 0px 0px rgba(214, 51, 108, 0.7), 0px 0px 0px rgba(169, 227, 75, 0.7), 0px 0px 0px rgba(102, 217, 232, 0.7);
+    }
+  </style>
+</head>
+<body>
+  <h1 class="word">REVOLUTION</h1>
+  <script>
+    const word = document.querySelector('.word')
+    const shadowEffect = ev => {
+      const {x, y} = ev
+      const {left, top, width, height} = word.getBoundingClientRect()
+      const transformX = (x - left - width / 2) / width * 20
+      const transformY = (y - top - height / 2) / height * 5
+      shadowTransform(transformX, transformY)
+    }
+    const shadowTransform = (x, y) => {
+      word.style.textShadow = `${x}px ${-y}px 0px rgba(102, 217, 232, 0.7), 
+        ${-x}px ${y}px 0px rgba(214, 51, 108, 0.7), 
+        ${y}px ${-x}px 0px rgba(169, 227, 75, 0.7), 
+        ${-y}px ${x}px 0px rgba(102, 217, 232, 0.7)`
+    }
+    document.addEventListener('mousemove', shadowEffect)
+  </script>
+</body>
+</html>
