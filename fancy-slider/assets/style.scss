@@ -52,7 +52,7 @@
   will-change: margin;
   @for $i from 1 to 9 {
     &:nth-child(#{$i}) {
-      left: ($i - 1) * 12.5%;;
+      left: ($i - 1) * 12.5%;
     }  
   }
 }
