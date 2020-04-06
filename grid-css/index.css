@@ -1,0 +1,62 @@
+* {
+  margin: 0;padding: 0;
+}
+body {
+  height: 100vh;
+}
+/*
+grid-template-rows: 1행크기 2행크기 ...
+grid-template-rows: [선이름] 1행크기 [선이름] 2행크기 ...
+grid-template-rows: repeat(3, 100px) // 3행까지 크기를 100px로
+
+grid-template-columns: 1열크기 2열크기 ...
+grid-template-columns: [선이름] 1열크기 [선이름] 2열크기 ...
+grid-template-columns: repeat(2, 1fr) fr (fraction) 공간비율
+grid-template-columns: repeat(3, 100px 200px 50px); => 100px 200px 50px 100px 200px 50px 100px 200px 50px
+grid-template-columns: repeat(3, 1fr 2fr 3fr) => 1fr 2fr 3fr 1fr 2fr 3fr 1fr 2fr 3fr
+
+grid-template-areas: "header header header" "main . ." "main . aside" "footer footer footer";
+마침표를 사용하거나 명시적으로 none을 입력해 빈 영역을 정의할 수 있다.
+(item) grid-area: header; 그리드 영역 이름을 참조해 템플릿 생성 (container가 아닌 item에 적용하는 속성)
+
+*/
+.container {
+  display: grid; 
+  grid-area: auto;
+  grid-template-rows: repeat(4, 200px);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: "header header header" "main . ." "main . aside" "footer footer footer";
+}
+
+div {
+  border: 1px solid #888;
+  background-color: thistle;
+}
+div:nth-child(1) {
+  grid-area: header;
+  background-color: teal;
+}
+div:nth-child(2) {
+  grid-area: main;
+  background-color: tomato;
+}
+div:nth-child(3) {
+  grid-area: aside;
+  background-color: yellowgreen;
+}
+div:nth-child(4) {
+  grid-area: footer;
+  background-color: cornflowerblue;
+}
+div:nth-child(5) {
+  background-color: darksalmon;
+}
+div:nth-child(6) {
+  background-color: darkorange;
+}
+div:nth-child(7) {
+  background-color: aquamarine;
+}
+div:nth-child(8) {
+  background-color: rosybrown;
+}
